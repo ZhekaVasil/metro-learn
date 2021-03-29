@@ -1,0 +1,14 @@
+.container {
+
+  .innerContainer {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .button {
+    margin-top: 1rem!important;
+    width: 100%;
+  }
+
+}
