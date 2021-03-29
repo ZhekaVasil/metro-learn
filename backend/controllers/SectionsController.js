@@ -30,7 +30,7 @@ exports.sectionsSearch = [
 	async function (req, res) {
 	const response = [];
 		try {
-			const term = req.params.term;
+			const term = req.params.term.toLowerCase();
 			Object.entries(storage || {}).forEach(([section = '', children = {}]) => {
 				Object.entries(children).forEach(([child = '', text = '']) => {
 					if (text.includes(term)) {
@@ -56,7 +56,7 @@ exports.sectionsSync = [
 					try {
 						const doc = await extractor.extract(sectionsPath + `/${section}/${child}`);
 						storage[section] = storage[section] || {};
-						storage[section][child] = doc.getBody();
+						storage[section][child] = doc.getBody().toLowerCase();
 					} catch (error) {
 						console.error(child);
 						console.error(error);

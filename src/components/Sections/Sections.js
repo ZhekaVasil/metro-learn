@@ -16,7 +16,7 @@ export const Sections = (props) => {
   const {loading, error, data: sections} = useFetch(getApiUrl('sections'), {cachePolicy: 'no-cache'}, []);
   return (
     <div className={classes.container}>
-      {error && 'Упс... Произошла ошибка. Невозможно загрузить список вопросов'}
+      {error && 'Упс... Произошла ошибка. Невозможно загрузить список документов'}
       {loading && 'Загрузка...'}
       {sections && (
         <Accordion styled>
