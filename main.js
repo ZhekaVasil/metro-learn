@@ -10,7 +10,7 @@ function createWindow () {
       nodeIntegrationInWorker: true,
     }
   })
-  win.loadURL('http://localhost:3000/');
+  win.loadURL('http://localhost:4000/');
   // win.loadFile('build/index.html');
 }
 

@@ -1,4 +1,4 @@
-const BASE = 'http://localhost:3000';
+const BASE = 'http://localhost:4000';
 const API_BASE = `${BASE}/api`;
 
 export const getApiUrl = path => `${API_BASE}/${path}`

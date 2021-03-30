@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Home.module.scss'
-import {Button} from 'semantic-ui-react';
 import {Container} from '../Container';
 import { Sections } from '../Sections';
 import { Search } from '../Search';
 
-export const Home = ({ setPageType }) => {
+export const Home = () => {
+  const [sections, setSections] = useState(null);
+  const [sectionsKey, setSectionsKey] = useState(1);
   return (
     <Container className={classes.container}>
-      <Sections />
-      <Search />
+      <div className={classes.searchContainer}>
+        <Search sections={sections} setSections={setSections} setSectionsKey={setSectionsKey} sectionsKey={sectionsKey} />
+      </div>
+      <Sections sections={sections} setSections={setSections} key={sectionsKey} />
     </Container>
   )
 };

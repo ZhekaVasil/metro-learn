@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './App.module.scss';
 import { Home } from './components/Home';
+import {Header} from './components/Header';
 
 export const App = () => {
   const [pageType, setPageType] = useState('home');
@@ -17,6 +18,7 @@ export const App = () => {
   }
   return (
     <>
+      <Header />
       <div className={classes.container}>
         {page}
       </div>

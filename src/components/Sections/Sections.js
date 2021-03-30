@@ -4,23 +4,29 @@ import classes from './Sections.module.scss';
 import {getApiUrl, getSectionUrl} from '../../utils/apiUtils';
 import {Accordion, Icon} from 'semantic-ui-react'
 
-export const Sections = (props) => {
+export const Sections = ({sections, setSections}) => {
   const [activeIndex, setActiveIndex] = useState();
+
+  const {loading, error, data} = useFetch(getApiUrl('sections'), {cachePolicy: 'no-cache'}, []);
+
+  useEffect(() => {
+    if (data && data.data) {
+      setSections(data.data);
+    }
+  }, [data])
 
   const handleClick = (e, titleProps) => {
     const {index} = titleProps
     const newIndex = activeIndex === index ? -1 : index
     setActiveIndex(newIndex);
   }
-
-  const {loading, error, data: sections} = useFetch(getApiUrl('sections'), {cachePolicy: 'no-cache'}, []);
   return (
     <div className={classes.container}>
       {error && 'Упс... Произошла ошибка. Невозможно загрузить список документов'}
       {loading && 'Загрузка...'}
-      {sections && (
+      {sections && !!sections.length && (
         <Accordion styled>
-          {sections.data.map(({parent, children}, index) => (
+          {sections.map(({parent, children}, index) => (
             <React.Fragment key={index}>
               <Accordion.Title
                 active={activeIndex === index}
@@ -41,6 +47,7 @@ export const Sections = (props) => {
           ))}
         </Accordion>
       )}
+      {sections && !sections.length && 'Документов не найдено'}
     </div>
   )
 };
