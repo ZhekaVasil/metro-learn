@@ -7,8 +7,8 @@ const extractor = new WordExtractor();
 
 const storage = {};
 
-const sectionsPath = path.normalize('./sections')
-// const sectionsPath = path.normalize(__dirname + '/../../../sections')
+// const sectionsPath = path.normalize('./sections')
+const sectionsPath = path.normalize(__dirname + '/../../../sections')
 
 exports.sectionsList = [
 	function (req, res) {

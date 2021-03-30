@@ -39,7 +39,7 @@ export const Sections = ({sections, setSections}) => {
               <Accordion.Content active={activeIndex === index}>
                 {children.map((i, index) => (
                   <p key={index}>
-                    <a href={getSectionUrl(parent, i)} target="_blank">{i}</a>
+                    <a href={getSectionUrl(parent, i)}>{i}</a>
                   </p>
                 ))}
               </Accordion.Content>
