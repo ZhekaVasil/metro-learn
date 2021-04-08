@@ -13,7 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../build")));
-app.use(express.static(path.join(__dirname, "../sections")));
+// app.use(express.static(path.join(__dirname, "../sections")));
+app.use(express.static(path.normalize(__dirname + '/../../sections')));
 
 //To allow cross-origin requests
 app.use(cors());

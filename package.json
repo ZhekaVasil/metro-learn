@@ -32,7 +32,7 @@
     "xlsx": "^0.16.9"
   },
   "scripts": {
-    "start": "electron-forge start",
+    "start": "electron-forge start --inspect-electron",
     "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
