@@ -3,8 +3,7 @@ import {useFetch} from 'use-http';
 import classes from './Sections.module.scss';
 import {getApiUrl, getSectionUrl} from '../../utils/apiUtils';
 import {Accordion, Icon} from 'semantic-ui-react';
-// import { shell } from 'electron';
-const { shell } = window.require('electron');
+// const { shell } = window.require('electron');
 
 export const Sections = ({sections, setSections}) => {
   const [activeIndex, setActiveIndex] = useState();
@@ -25,7 +24,8 @@ export const Sections = ({sections, setSections}) => {
 
   const openDoc = (event, path) => {
     event.preventDefault();
-    shell.openPath(path);
+    fetch(path);
+    // shell.openPath(path);
   }
 
   return (
@@ -42,12 +42,12 @@ export const Sections = ({sections, setSections}) => {
                 onClick={handleClick}
               >
                 <Icon name='dropdown'/>
-                <span className={classes.parent}>{parent}</span>
+                <span className={classes.parent}>{parent.replaceAll('_', ' ')}</span>
               </Accordion.Title>
               <Accordion.Content active={activeIndex === index}>
                 {children.map((i, index) => (
                   <p key={index}>
-                    <a className={classes.link} onClick={event => openDoc(event, i.path)}>{i.name}</a>
+                    <a href="/" onClick={event => openDoc(event, getSectionUrl(parent, i.name))}>{i.name.replaceAll('_', ' ')}</a>
                   </p>
                 ))}
               </Accordion.Content>

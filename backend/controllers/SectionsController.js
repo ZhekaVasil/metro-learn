@@ -2,13 +2,14 @@ const apiResponse = require('../helpers/apiResponse');
 const fs = require('fs');
 const path = require('path');
 const WordExtractor = require('word-extractor');
+const { exec } = require('child_process');
 
 const extractor = new WordExtractor();
 
 const storage = {};
 
-// const sectionsPath = path.normalize('./sections')
-const sectionsPath = path.normalize(__dirname + '/../../../sections')
+const sectionsPath = path.normalize('./sections')
+// const sectionsPath = path.normalize(__dirname + '/../../../sections')
 
 exports.sectionsList = [
   function (req, res) {
@@ -77,6 +78,21 @@ exports.sectionsSync = [
       return apiResponse.successResponseWithData(res, 'Operation success', 'done')
     } catch (err) {
       //throw error in json response with status 500.
+      return apiResponse.ErrorResponse(res, err);
+    }
+  }
+]
+
+exports.sectionsView = [
+  function (req, res) {
+    try {
+      const filePath = path.resolve(path.normalize(`${sectionsPath}/${req.params.folder}/${req.params.file}`));
+      exec(`start ${filePath}`);
+      console.log(filePath);
+      return apiResponse.successResponseWithData(res, 'Operation success', 'done')
+    } catch (err) {
+      //throw error in json response with status 500.
+      console.error(err);
       return apiResponse.ErrorResponse(res, err);
     }
   }
